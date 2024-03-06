@@ -5,24 +5,52 @@
         <h2>Zaloguj się lub utwórz konto i rozpocznij przygodę z treningami!</h2>
       </div>
 
-      <div class="login-form">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="login-form-container">
         <h2>Logowanie</h2>
         <p>Zaloguj się do swojego konta lub utwórz nowe!</p>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Enter your username">
+          <input 
+            matInput
+            type="email"
+            id="email"
+            name="email"
+            formControlName="email"
+            placeholder="Enter your username">
         </mat-form-field>
   
         <mat-form-field appearance="outline">
           <mat-label>Hasło</mat-label>
-          <input matInput type="password" placeholder="Hasło">
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Hasło">
         </mat-form-field>
   
-        <button mat-raised-button color="primary">Zaloguj</button>
+        <button mat-raised-button  type="submit" color="primary">Zaloguj</button>
         <br>
         <p>Nie masz jeszcze konta? <a href="/register">Zarejestruj się!</a></p>
       </div>
+      
+      @if (submitted && f['email'].errors){
+        <div class="invalid-feedback">
+          
+          @if (f['email'].errors['required']) {
+            <div>Email jest wymagany</div>
+            }
 
+          @if (f['email'].errors['email']) {
+            <div>Niepoprawny format email</div>
+            }
+
+        </div>
+      }
+
+    </form>
     </div>
   </div>
+
+
   
