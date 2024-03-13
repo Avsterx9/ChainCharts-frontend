@@ -8,7 +8,7 @@ import { ILoginUser } from '../models/ILoginUser';
 })
 export class UsersService {
 
-  private baseUrl = 'https://localhost:44359/api/users/'
+  private baseUrl = 'https://localhost:50274/api/users/'
 
   constructor(
     private http: HttpClient,

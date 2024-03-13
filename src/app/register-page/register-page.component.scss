@@ -1,0 +1,84 @@
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: aliceblue;
+  }
+  
+.register-container {
+    max-width: 50vw;
+    background-color: white;
+    min-width: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.register-image, .register-form {
+    flex: 1;
+}
+
+.register-image {
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background: #8E2DE2;
+    background: -webkit-linear-gradient(to bottom, #6012fc, #8E2DE2);
+    background: linear-gradient(to bottom, #6012fc, #8E2DE2);
+}
+
+.register-image h2 {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.register-image h1 {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.register-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.register-form h2 {
+    margin-bottom: 1rem;
+}
+  
+.register-form p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+  
+mat-form-field {
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+button{
+    width: 20vh;
+}
+
+.invalid-feedback{
+    color: red;
+    font-weight: 400;
+}

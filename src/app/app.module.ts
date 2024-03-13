@@ -16,6 +16,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { RegisterPageComponent } from './register-page/register-page.component';
     MatButtonModule,
     MatDividerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     provideClientHydration(),
