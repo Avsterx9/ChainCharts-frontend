@@ -16,7 +16,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HttpClientModule
   ],
   providers: [
-    provideClientHydration(),
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]

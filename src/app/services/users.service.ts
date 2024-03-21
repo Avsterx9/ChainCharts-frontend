@@ -1,20 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ILoginUser } from '../models/ILoginUser';
+import { ILoginUser } from '../models/Interfaces/ILoginUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  private baseUrl = 'https://localhost:53085/api/users/'
+  // public userInfo:  
 
-  constructor(
-    private http: HttpClient,
-    ){ }
+  constructor(){ }
 
-  public login(loginUser: ILoginUser) : Observable<any>{
-    return this.http.post<any>(this.baseUrl + 'login', loginUser);
-  }
 }
