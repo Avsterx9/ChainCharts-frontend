@@ -45,8 +45,8 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+            <mat-hint>DD/MM/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -65,12 +65,12 @@
             <input
               matInput
               type="password"
-              formControlName="password"
+              formControlName="confirmPassword"
               placeholder="potwierdź hasło">
           </mat-form-field>
   
 
-        <button mat-raised-button  type="submit" color="primary">Utwórz konto</button>
+        <button mat-raised-button type="submit" color="primary">Utwórz konto</button>
         <br>
       </div>
       
