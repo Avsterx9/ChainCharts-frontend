@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsersService } from '../../../../services/users.service';
 import { CommonModule } from '@angular/common';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -27,8 +26,7 @@ export class RegisterPageComponent {
 
   submitted: boolean = false;
   constructor(
-    private formBuiler: FormBuilder,
-    private usersService: UsersService
+    private formBuiler: FormBuilder
     ){
     this.buildForm();
   }

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsersService } from '../../../../services/users.service';
-import { ILoginUser } from '../../../../models/Interfaces/ILoginUser';
 import { ILoginResponse } from '../../../../models/Responses/ILoginResponse';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +7,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
+import { ILoginModel } from '../../../../models/Interfaces/ILoginModel';
 
 @Component({
   selector: 'app-login-page',
@@ -28,7 +28,7 @@ export class LoginPageComponent {
 
   constructor(
     private formBuiler: FormBuilder,
-    private usersService: UsersService
+    private authService: AuthService
     ){
     this.buildForm();
   }
@@ -55,12 +55,12 @@ export class LoginPageComponent {
     var email = this.loginForm.get('email')?.value;
     var password = this.loginForm.get('password')?.value;
 
-    const loginUser: ILoginUser = {
+    const loginUser: ILoginModel = {
       email: email,
       password: password
     }
 
-    this.usersService.login(loginUser).subscribe({
+    this.authService.authenticate$(loginUser).subscribe({
       next: (res: ILoginResponse) => {
         localStorage.setItem('token', res.token);
         console.log(res.token);
