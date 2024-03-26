@@ -63,8 +63,7 @@ export class LoginPageComponent {
     this.authService.authenticate$(loginUser).subscribe({
       next: (res: ILoginResponse) => {
         localStorage.setItem('token', res.token);
-        console.log(res.token);
-        // window.location.href=""
+        window.location.href="/app/"
       },
       error: (error) => {
         console.log(error);
