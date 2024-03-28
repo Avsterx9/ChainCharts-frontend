@@ -8,7 +8,7 @@ import { ILoginModel } from '../models/Interfaces/ILoginModel';
   providedIn: 'root'
 })
 export class AuthApiService {
-  private baseUrl = 'https://localhost:64893/api/users/'
+  private baseUrl = 'https://localhost:53224/api/users/'
 
   constructor(
     private http: HttpClient,

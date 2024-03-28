@@ -6,16 +6,15 @@ export default [
       path: '',
       component: AppViewComponent,
       children: [
-        // {
-        //   path: '',
-        //   loadComponent: () => import('./views/home/login-page.component').then((c) => c.LoginPageComponent)
-        // },
+        {
+          path: '',
+          loadComponent: () => import('./views/home/home.component').then((c) => c.HomeComponent)
+        },
         // {
         //   path: 'register',
         //   loadComponent: () =>
         //     import('./views/register-page/register-page.component').then((c) => c.RegisterPageComponent),
         // },
-        
       ],
     },
     { path: '**', redirectTo: '' },
