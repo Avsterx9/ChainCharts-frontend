@@ -14,8 +14,7 @@ import { TokenApiInterceptor } from './interceptors/token-api.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-  ],
+    HttpClientModule  ],
   providers: [
     provideAnimationsAsync(),
     {
