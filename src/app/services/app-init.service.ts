@@ -25,9 +25,9 @@ export class AppInitService {
     if (!this.authService.isTokenExpired) {
       return of(this.authService.token).pipe(
         filter((token: string | null): token is string => token !== null),
-        // mergeMap((token: string) =>
-        //   // this.currentUserService.fetchCurrentUser$(decodeJwtToken(token).id)
-        // ),
+        mergeMap((token: string) =>
+          this.currentUserService.fetchCurrentUser$()
+        ),
         map(() => true)
       )
     } else {

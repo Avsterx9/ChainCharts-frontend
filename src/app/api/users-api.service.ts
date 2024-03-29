@@ -7,13 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersApiService {
-  private baseUrl = 'https://localhost:53224/api/users/'
+  private baseUrl = 'https://localhost:57789/api/users/'
 
   constructor(
     private http: HttpClient,
     ){ }
-
-  public getCurrentUser$() : Observable<IUserDetailsModel>{
-    return this.http.get<any>(this.baseUrl + 'GetCurrentUser');
-  }
 }

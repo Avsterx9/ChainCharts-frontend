@@ -6,6 +6,7 @@ import { ILoginModel } from '../models/Interfaces/ILoginModel';
 import { ITokenModel } from '../models/Interfaces/ITokenModel';
 import { LocalStorageService } from './local-storage.service';
 import { Router } from '@angular/router';
+import { ILoginResponse } from '../models/Responses/ILoginResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -22,22 +23,17 @@ export class AuthService {
 
   public authenticate$(data: ILoginModel): Observable<any> {
     if (this.token) this.destroyToken();
-
+    
     return this.authApi.authenticate$(data).pipe(
         tap((token: ITokenModel) => this.storeToken(token)),
         mergeMap(({ token }: ITokenModel) => this.currentUserService.fetchCurrentUser$())
     )
   }
 
-  // public logout$(): Observable<HttpResponseModel | null> {
-  //   return this.authApi.logout$().pipe(
-  //       tap(() => {
-  //           this.destroyToken();
-  //           this.signalR.disconnect();
-  //           this.router.navigate(['/auth']);
-  //       })
-  //   );
-  // }
+  public logout() {
+    this.destroyToken();
+    this.router.navigate(['/auth']);
+  }
 
   public redirectToAuthPage$(): Observable<null> {
     return of(null).pipe(

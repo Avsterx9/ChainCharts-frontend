@@ -6,9 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 import { ILoginModel } from '../../../../models/Interfaces/ILoginModel';
+import { LocalStorageService } from '../../../../services/local-storage.service';
 
 @Component({
   selector: 'app-login-page',
@@ -28,7 +29,8 @@ export class LoginPageComponent {
 
   constructor(
     private formBuiler: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
     ){
     this.buildForm();
   }
@@ -36,8 +38,8 @@ export class LoginPageComponent {
   private buildForm(): void{
     this.loginForm = this.formBuiler.group(
       {
-        email: ['', Validators.required, Validators.email],
-        password: ['', Validators.required]
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]]
       }
     );
   }
@@ -61,9 +63,8 @@ export class LoginPageComponent {
     }
 
     this.authService.authenticate$(loginUser).subscribe({
-      next: (res: ILoginResponse) => {
-        localStorage.setItem('token', res.token);
-        window.location.href="/app/"
+      next: (res) => {
+        this.router.navigate(['/app']);
       },
       error: (error) => {
         console.log(error);
