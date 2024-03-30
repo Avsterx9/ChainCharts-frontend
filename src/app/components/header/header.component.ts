@@ -3,31 +3,25 @@ import { AuthService } from '../../services/auth.service';
 import { CurrentUserService } from '../../services/current-user.service';
 import { IUserDetailsModel } from '../../models/Interfaces/UserDetails';
 import { userInfo } from 'os';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
 
-  public userData?: IUserDetailsModel;
+  protected readonly userData$: Observable<IUserDetailsModel>;
 
   constructor(
     private authService: AuthService,
     private currentUserService: CurrentUserService){
-      this.currentUserService.userInfo$.subscribe({
-        next: (user: IUserDetailsModel) => {
-          console.log(user);
-          this.userData = user
-        },
-        error:(error) => {
-          console.log(error);
-        }
-    });
+      this.userData$ = this.currentUserService.userInfo$;
   }
 
   public logout(): void{

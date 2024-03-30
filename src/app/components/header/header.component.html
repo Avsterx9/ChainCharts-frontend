@@ -1,7 +1,11 @@
 <header>
     <div class="navbar">
         <div class="navbar-left">
-          <span>{{userData?.firstName}} {{userData?.lastName}}</span>
+          @if(userData$ | async; as userData) {
+            <span>{{userData.firstName}} {{userData.lastName}}</span>
+           } @else {
+            <span>Unknown user</span>
+           }
         </div>
         <div class="navbar-right">
           <button (click)="logout()">Logout</button>

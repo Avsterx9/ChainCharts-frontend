@@ -22,10 +22,10 @@ export class AppInitService {
     }
     
   private checkTokenExpiration$(): Observable<boolean> {
-    if (!this.authService.isTokenExpired) {
+    if (this.authService.token) {
       return of(this.authService.token).pipe(
         filter((token: string | null): token is string => token !== null),
-        mergeMap((token: string) =>
+        mergeMap(() =>
           this.currentUserService.fetchCurrentUser$()
         ),
         map(() => true)

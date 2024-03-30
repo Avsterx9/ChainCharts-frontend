@@ -52,26 +52,11 @@ export class AuthService {
     return this.token !== null;
   }
 
-public get isTokenExpired(): boolean {
-  return false;
-    // if (this.token === null) {
-    //     return true;
-    // }
-
-    // // const decodedToken: DecodedTokenModel = decodeJwtToken(this.token);
-
-    // const expirationDate: Date = new Date(0);
-    // expirationDate.setUTCSeconds(decodedToken.exp);
-    // const currentDate: Date = new Date();
-
-    // return currentDate > expirationDate;
-  }
-
-private storeToken({ token }: ITokenModel): void {
+  private storeToken({ token }: ITokenModel): void {
     this.storageService.set(AuthService.JWT_TOKEN, token);
   }
 
-public destroyToken(): void {
+  public destroyToken(): void {
     this.storageService.remove(AuthService.JWT_TOKEN);
   }
 }
