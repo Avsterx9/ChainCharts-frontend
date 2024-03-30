@@ -8,7 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { CryptoApiService } from '../../../../api/crypto-api.service';
 import { CryptoToken } from '../../../../models/Interfaces/CryptoToken';
-import { MatSort } from '@angular/material/sort';
+
 import { SearchBarComponent } from "../../../../components/search-bar/search-bar.component";
 
 export interface PeriodicElement {
@@ -36,9 +36,6 @@ export interface PeriodicElement {
     ]
 })
 export class HomeComponent {
-  // @ViewChild(MatSort) sort: MatSort;
-  // @ViewChild(TokenSearchResultComponent) child:TokenSearchResultComponent;
-
   cryptoData: CryptoToken[] = [];
   dataSource = new MatTableDataSource(this.cryptoData);
   displayedColumns: string[] = ['Logo', 'Name', 'Price', 'Last 24h', 'High 24h', 'Low 24h', 'Total volume', 'Details'];

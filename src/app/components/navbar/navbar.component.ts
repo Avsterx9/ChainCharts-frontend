@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SearchBarComponent } from "../search-bar/search-bar.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { SearchBarComponent } from "../search-bar/search-bar.component";
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [SearchBarComponent]
+    imports: [SearchBarComponent, CommonModule]
 })
 export class NavbarComponent {
 

@@ -6,7 +6,6 @@ import { ILoginModel } from '../models/Interfaces/ILoginModel';
 import { ITokenModel } from '../models/Interfaces/ITokenModel';
 import { LocalStorageService } from './local-storage.service';
 import { Router } from '@angular/router';
-import { ILoginResponse } from '../models/Responses/ILoginResponse';
 
 @Injectable({
   providedIn: 'root'

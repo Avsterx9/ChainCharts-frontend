@@ -1,5 +1,5 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,13 +28,12 @@ import { CryptoToken } from '../../models/Interfaces/CryptoToken';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarComponent {
-
   myControl = new FormControl('');
   options: CryptoToken[] = [];
   filteredOptions: Observable<CryptoToken[]>;
 
   constructor(private cryptoApiService: CryptoApiService){
-    this.getTokens();
+    // this.getTokens();
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
