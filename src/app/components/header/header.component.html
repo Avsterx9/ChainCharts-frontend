@@ -1,11 +1,15 @@
 <header>
     <div class="navbar">
         <div class="navbar-left">
-          @if(userData$ | async; as userData) {
-            <span>{{userData.firstName}} {{userData.lastName}}</span>
-           } @else {
-            <span>Unknown user</span>
-           }
+          <mat-icon color="primary">account_circle</mat-icon>
+
+          <div class="user-info">
+            @if(userData$ | async; as userData) {
+              <span>{{userData.firstName}} {{userData.lastName}}</span>
+             } @else {
+              <span>Unknown user</span>
+             }
+          </div>
         </div>
         <div class="navbar-right">
           <button (click)="logout()">Logout</button>

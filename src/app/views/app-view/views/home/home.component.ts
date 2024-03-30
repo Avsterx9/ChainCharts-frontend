@@ -39,7 +39,7 @@ export class HomeComponent {
 
   cryptoData: CryptoToken[] = [];
   dataSource = new MatTableDataSource(this.cryptoData);
-  displayedColumns: string[] = ['Logo', 'Name', 'Price', 'Last 24h', 'High 24h', 'Low 24h', 'Total volume'];
+  displayedColumns: string[] = ['Logo', 'Name', 'Price', 'Last 24h', 'High 24h', 'Low 24h', 'Total volume', 'Details'];
   tokenSearchName = '';
 
   displayTokenDataComponent = true;

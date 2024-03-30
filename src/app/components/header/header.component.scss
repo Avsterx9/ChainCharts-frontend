@@ -7,13 +7,22 @@
   border-bottom: 1px solid #e2e2e2;
 }
 
-.navbar-left span {
+.navbar-left{
+  display: flex;
+}
+
+.user-info{
+  margin-top: 0.3em;
+  margin-left: 1em;
+}
+
+.navbar-left span{
   font-size: 1em;
 }
 
 .navbar-right button {
   padding: 8px 16px;
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
   color: white;
   border: none;
   cursor: pointer;
@@ -21,5 +30,5 @@
 }
 
 .navbar-right button:hover {
-  background-color: #d32f2f; /* Darker red */
+  background-color: #d32f2f;
 }
