@@ -27,6 +27,7 @@
 
 .navbar-menu li a {
   text-decoration: none;
+  font-size: 1.2em;
   color: #333;
   padding: 10px 15px;
   display: block;
@@ -36,10 +37,6 @@
   background-color: #ddd;
 }
 
-.navbar-actions .button-logout {
-  padding: 8px 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
+.navbar-actions{
+  margin-top: 1em;
 }
-

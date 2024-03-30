@@ -1,0 +1,21 @@
+
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Search</mat-label>
+        <input type="text"
+                placeholder="Search"
+                aria-label="Number"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        @for (option of filteredOptions | async; track option) {
+            <mat-option [value]="option.name">
+                <img src="{{option.image}}" width="20px">
+                {{option.name}}
+            </mat-option>
+        }
+        </mat-autocomplete>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+</form>

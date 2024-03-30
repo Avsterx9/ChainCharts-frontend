@@ -9,6 +9,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { CryptoApiService } from '../../../../api/crypto-api.service';
 import { CryptoToken } from '../../../../models/Interfaces/CryptoToken';
 import { MatSort } from '@angular/material/sort';
+import { SearchBarComponent } from "../../../../components/search-bar/search-bar.component";
 
 export interface PeriodicElement {
   name: string;
@@ -18,20 +19,21 @@ export interface PeriodicElement {
 }
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTableModule
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-home',
+    standalone: true,
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatTableModule,
+        SearchBarComponent
+    ]
 })
 export class HomeComponent {
   // @ViewChild(MatSort) sort: MatSort;
@@ -45,7 +47,7 @@ export class HomeComponent {
   displayTokenDataComponent = true;
 
   constructor(private cryptoApiService: CryptoApiService){
-    this.getTokens();
+    // this.getTokens();
   }
 
   private getTokens(){
