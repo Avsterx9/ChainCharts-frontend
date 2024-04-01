@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { CryptoToken } from '../models/Interfaces/CryptoToken';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CryptoGlobalData } from '../models/Interfaces/CryptoGlobalData';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptoApiService {
   private coinGekoTokensURL: string = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc';
-  private coinGekoTokenURL: string = 'https://api.coingecko.com/api/v3/coins/';
+  private coinGekoTokenURL: string = 'https://api.coingecko.com/api/v3/';
   // private cryptoCompareNewsURL: string = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN';
   private coinGekoChartURL: string = '/market_chart?vs_currency=usd&days=';
 
@@ -20,6 +21,10 @@ export class CryptoApiService {
 
   public getCTokens(): Observable<CryptoToken[]>{
     return this.http.get<CryptoToken[]>(this.coinGekoTokensURL);
+  }
+
+  public getGlobalData(): Observable<CryptoGlobalData>{
+    return this.http.get<CryptoGlobalData>(this.coinGekoTokenURL + 'global');
   }
 
   // public getLatestNews(){

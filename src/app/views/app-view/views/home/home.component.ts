@@ -10,6 +10,7 @@ import { CryptoApiService } from '../../../../api/crypto-api.service';
 import { CryptoToken } from '../../../../models/Interfaces/CryptoToken';
 
 import { SearchBarComponent } from "../../../../components/search-bar/search-bar.component";
+import { GlobalCryptoDataComponent } from "../../../../components/global-crypto-data/global-crypto-data.component";
 
 export interface PeriodicElement {
   name: string;
@@ -32,7 +33,8 @@ export interface PeriodicElement {
         MatButtonModule,
         MatCardModule,
         MatTableModule,
-        SearchBarComponent
+        SearchBarComponent,
+        GlobalCryptoDataComponent
     ]
 })
 export class HomeComponent {

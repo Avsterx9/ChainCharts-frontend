@@ -1,0 +1,42 @@
+<mat-card class="container">
+    <mat-card-header >
+      <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Global market data</mat-card-title>
+		<mat-divider></mat-divider>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+        @if(globalData$ | async; as globalData) {
+          <div class="data-container">
+            <i class="material-icons">currency_bitcoin</i> 
+            Active crypto currencies:
+            <div class="description-container">
+              {{globalData.data.active_cryptocurrencies}}
+            </div>
+          </div>
+
+          <div class="data-container">
+            <i class="material-icons">area_chart</i>
+            Total market value:
+            <div class="description-container">
+              {{globalData.data.total_market_cap.usd | number:'1.2-2'}} $
+            </div>
+          </div>
+
+          <div class="data-container">
+            <i class="material-icons">candlestick_chart</i>
+            Market cap change percentage 24h:
+            <div class="description-container"
+                [ngClass]="{
+                  'positive': globalData.data.market_cap_change_percentage_24h_usd > 0,
+                  'negative': globalData.data.market_cap_change_percentage_24h_usd < 0
+                }">
+              {{ globalData.data.market_cap_change_percentage_24h_usd | number:'1.2-2' }}%
+            </div>
+          </div>
+
+         } @else {
+          <mat-spinner></mat-spinner>
+         }
+
+      </mat-card-content>
+</mat-card>

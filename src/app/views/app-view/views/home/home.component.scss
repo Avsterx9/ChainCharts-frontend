@@ -2,6 +2,17 @@
   display: block;
 }
 
+.upper-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-container{
+  width: 50%;
+  margin: 3em;
+}
+
 .search-container{
   padding: 1em;
   margin-left: auto;

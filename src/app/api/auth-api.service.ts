@@ -9,7 +9,7 @@ import { IUserDetailsModel } from '../models/Interfaces/UserDetails';
   providedIn: 'root'
 })
 export class AuthApiService {
-  private baseUrl = 'https://localhost:56292/api/users/'
+  private baseUrl = 'https://localhost:57571/api/users/'
 
   constructor(
     private http: HttpClient,
