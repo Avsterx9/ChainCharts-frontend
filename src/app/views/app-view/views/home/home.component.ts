@@ -11,6 +11,7 @@ import { CryptoToken } from '../../../../models/Interfaces/CryptoToken';
 
 import { SearchBarComponent } from "../../../../components/search-bar/search-bar.component";
 import { GlobalCryptoDataComponent } from "../../../../components/global-crypto-data/global-crypto-data.component";
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -45,7 +46,7 @@ export class HomeComponent {
 
   displayTokenDataComponent = true;
 
-  constructor(private cryptoApiService: CryptoApiService){
+  constructor(private cryptoApiService: CryptoApiService, private router: Router){
     this.getTokens();
   }
 
@@ -61,4 +62,7 @@ export class HomeComponent {
     })
   }
 
+  public navigateToTokenDetails(tokenName: string) {
+    this.router.navigate(['/app/token-details', tokenName]);
+  }
 }

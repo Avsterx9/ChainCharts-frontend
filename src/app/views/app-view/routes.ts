@@ -11,9 +11,8 @@ export default [
           loadComponent: () => import('./views/home/home.component').then((c) => c.HomeComponent)
         },
         {
-          path: 'token-details',
-          loadComponent: () =>
-            import('./views/token-details/token-details.component').then((c) => c.TokenDetailsComponent),
+          path: 'token-details/:tokenName',
+          loadComponent: () => import('./views/token-details/token-details.component').then((c) => c.TokenDetailsComponent),
         },
       ],
     },
