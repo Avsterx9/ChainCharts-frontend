@@ -8,7 +8,7 @@ import { CryptoGlobalData } from '../models/Interfaces/CryptoGlobalData';
   providedIn: 'root'
 })
 export class CryptoApiService {
-  private coinGekoTokensURL: string = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc';
+  private coinGekoTokensURL: string = 'http://localhost:5002/api/users/GetTokens';
   private coinGekoTokenURL: string = 'https://api.coingecko.com/api/v3/';
   // private cryptoCompareNewsURL: string = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN';
   private coinGekoChartURL: string = '/market_chart?vs_currency=usd&days=';

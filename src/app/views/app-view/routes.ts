@@ -10,11 +10,11 @@ export default [
           path: '',
           loadComponent: () => import('./views/home/home.component').then((c) => c.HomeComponent)
         },
-        // {
-        //   path: 'register',
-        //   loadComponent: () =>
-        //     import('./views/register-page/register-page.component').then((c) => c.RegisterPageComponent),
-        // },
+        {
+          path: 'token-details',
+          loadComponent: () =>
+            import('./views/token-details/token-details.component').then((c) => c.TokenDetailsComponent),
+        },
       ],
     },
     { path: '**', redirectTo: '' },

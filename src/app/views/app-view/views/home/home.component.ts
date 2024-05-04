@@ -46,7 +46,7 @@ export class HomeComponent {
   displayTokenDataComponent = true;
 
   constructor(private cryptoApiService: CryptoApiService){
-    // this.getTokens();
+    this.getTokens();
   }
 
   private getTokens(){

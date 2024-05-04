@@ -33,7 +33,7 @@ export class SearchBarComponent {
   filteredOptions: Observable<CryptoToken[]>;
 
   constructor(private cryptoApiService: CryptoApiService){
-    // this.getTokens();
+    this.getTokens();
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
