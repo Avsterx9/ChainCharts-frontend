@@ -1,3 +1,53 @@
-:host {
-  display: block;
+.token-title{
+  display: flex;
+  justify-content: start;
+  margin-left: 1em;
+  margin-top: 1em;
+
+  img{
+    width: 35px;
+    width: 35px;
+  }
 }
+
+.token-title-name{
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-left: 0.5em;
+  margin-top: 0.2em;
+}
+
+.card-content{
+  display: flex;
+  justify-content: space-between;
+}
+
+.token-data-container {
+  display: flex;
+  font-size: 1.4em;
+  width: 40%;
+}
+
+.chart-container{
+  width: 59%;
+}
+
+mat-list{
+  width: 100%;
+}
+
+.data {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+  width: 100%;
+}
+
+.alignleft{
+  color: rgb(70, 70, 70);
+  font-weight: 500;
+}
+
+.text-red { color: red; font-weight: 600; }
+.text-green { color: green; font-weight: 600;}
+.text-white { color: white; font-weight: 600;}

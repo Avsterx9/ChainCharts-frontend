@@ -1,9 +1,78 @@
-<mat-card>
-    <mat-card-title>
+<div>
+    <mat-card>
         @if(token$ | async; as token) {
-            <span>{{token.id}}</span>
+            <mat-card-title>
+                <div class="token-title">
+                    <img src={{token.image.thumb}}>
+                    <div class="token-title-name">{{token.name}}</div>
+                </div>
+            </mat-card-title>
+            <mat-card-content class="card-content">
+                <div class="token-data-container">
+                    <mat-list>
+                        <mat-list-item class="detail-list">
+                            <div class="data">
+                                <p class="alignleft">Change 24h:</p>
+                                <p class="alignright" [ngClass]="{
+                                    'text-red': token.market_data.price_change_percentage_24h < 0,
+                                    'text-green': token.market_data.price_change_percentage_24h > 0,
+                                    'text-white': token.market_data.price_change_percentage_24h == 0
+                                  }">
+                                  {{ token.market_data.price_change_percentage_24h.toFixed(2) }}%
+                                </p>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item>
+                            <div class="data">
+                                <p class="alignleft">Change 7d:</p>
+                                <p class="alignright" [ngClass]="{
+                                    'text-red': token.market_data.price_change_percentage_7d < 0,
+                                    'text-green': token.market_data.price_change_percentage_7d > 0,
+                                    'text-white': token.market_data.price_change_percentage_7d == 0
+                                  }">
+                                  {{ token.market_data.price_change_percentage_7d.toFixed(2) }}%
+                                </p>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item>
+                            <div class="data">
+                                <p class="alignleft">Change 30d:</p>
+                                <p class="alignright" [ngClass]="{
+                                    'text-red': token.market_data.price_change_percentage_30d < 0,
+                                    'text-green': token.market_data.price_change_percentage_30d > 0,
+                                    'text-white': token.market_data.price_change_percentage_30d == 0
+                                  }">
+                                  {{ token.market_data.price_change_percentage_30d.toFixed(2) }}%
+                                </p>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item>
+                            <div class="data">
+                                <p class="alignleft">Change 1 year:</p>
+                                <p class="alignright" [ngClass]="{
+                                    'text-red': token.market_data.price_change_percentage_1y < 0,
+                                    'text-green': token.market_data.price_change_percentage_1y > 0,
+                                    'text-white': token.market_data.price_change_percentage_1y == 0
+                                  }">
+                                  {{ token.market_data.price_change_percentage_1y.toFixed(2) }}%
+                                </p>
+                            </div>
+                        </mat-list-item>
+                      </mat-list>
+                </div>
+
+                <div class="chart-container">
+                    chart
+                </div>
+            </mat-card-content>
         } @else {
             <mat-spinner></mat-spinner>
         }
-    </mat-card-title>
-</mat-card>
+    </mat-card>    
+</div>

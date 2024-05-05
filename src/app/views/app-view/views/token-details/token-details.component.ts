@@ -5,21 +5,23 @@ import { CryptoTokenDescription } from '../../../../models/Interfaces/CryptoToke
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardActions, MatCardModule, MatCardTitle } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatList, MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-token-details',
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatDividerModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatButtonModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatListModule
   ],
   templateUrl: './token-details.component.html',
   styleUrl: './token-details.component.scss',

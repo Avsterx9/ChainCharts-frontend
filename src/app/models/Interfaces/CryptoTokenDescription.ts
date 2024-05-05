@@ -35,6 +35,7 @@ export interface PriceContainer {
     jpy: number;
     pln: number;
     xrp: number;
+    usd: number;
 }
 
 export interface DateContainer {
@@ -46,6 +47,7 @@ export interface DateContainer {
     jpy: string;
     pln: string;
     xrp: string;
+    usd: string;
 }
 
 export interface DescriptionContainer {

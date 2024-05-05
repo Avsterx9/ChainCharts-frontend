@@ -21,7 +21,7 @@ import { CryptoToken } from '../../models/Interfaces/CryptoToken';
     MatButtonModule,
     MatAutocompleteModule,
     AsyncPipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss',
