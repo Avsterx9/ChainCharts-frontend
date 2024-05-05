@@ -51,7 +51,7 @@ export class HomeComponent {
   }
 
   private getTokens(){
-    this.cryptoApiService.getCTokens().subscribe({
+    this.cryptoApiService.getCTokens$().subscribe({
       next: (response: CryptoToken[]) => {
         this.cryptoData = response;
         this.dataSource.data = this.cryptoData;

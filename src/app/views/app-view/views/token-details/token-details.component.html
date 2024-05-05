@@ -1,1 +1,9 @@
-{{tokenName}}
+<mat-card>
+    <mat-card-title>
+        @if(token$ | async; as token) {
+            <span>{{token.id}}</span>
+        } @else {
+            <mat-spinner></mat-spinner>
+        }
+    </mat-card-title>
+</mat-card>

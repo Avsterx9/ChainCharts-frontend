@@ -48,7 +48,7 @@ export class SearchBarComponent {
   }
 
   private getTokens(){
-    this.cryptoApiService.getCTokens().subscribe({
+    this.cryptoApiService.getCTokens$().subscribe({
       next: (response: CryptoToken[]) => {
         this.options = response;
       },

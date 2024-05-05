@@ -29,6 +29,6 @@ export class GlobalCryptoDataComponent {
   protected readonly globalData$: Observable<CryptoGlobalData>;
 
   constructor(private cryptoApiService: CryptoApiService){
-    this.globalData$ = this.cryptoApiService.getGlobalData()
+    this.globalData$ = this.cryptoApiService.getGlobalData$()
   }
 }
