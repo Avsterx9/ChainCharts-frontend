@@ -1,0 +1,20 @@
+<ngx-charts-line-chart
+[animations]="true"
+[yScaleMin]="yScaleMin"
+[legend]="false"
+[scheme]="'nightLights'"
+[showGridLines] = "true"
+[showXAxisLabel]="true"
+[showYAxisLabel]="true"
+[xAxis]="xAxis"
+[yAxis]="yAxis"
+[xAxisLabel]="xAxisLabel"
+[yAxisLabel]="yAxisLabel"
+[timeline]="timeline"
+[results]="chartData"
+(select)="onSelect($event)"
+(activate)="onActivate($event)"
+(deactivate)="onDeactivate($event)"
+style="fill: #3d3d3d;">
+>
+</ngx-charts-line-chart>

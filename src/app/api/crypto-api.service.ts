@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CryptoGlobalData } from '../models/Interfaces/CryptoGlobalData';
 import { CryptoTokenDescription } from '../models/Interfaces/CryptoTokenDescription';
+import { PriceData } from '../models/Interfaces/PriceData';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,11 @@ export class CryptoApiService {
   //   return this.http.get<any>(this.cryptoCompareNewsURL);
   // }
 
-  public getTokenChartData$(tokenName: string, timePeriod:number){
-    return this.http.get<any>(this.cryptoApiURL + tokenName + this.coinGekoChartURL + timePeriod);
+  public getTokenChartData$(tokenName: string, timePeriod: number) : Observable<PriceData>{
+    let params = new HttpParams()
+      .set('TokenName', tokenName)
+      .set('Days', timePeriod);
+
+    return this.http.get<any>(this.cryptoApiURL + 'GetPriceData', { params });
   }
 }

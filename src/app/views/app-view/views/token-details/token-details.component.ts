@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatList, MatListModule} from '@angular/material/list';
+import { CryptoChartComponent } from '../../../../components/crypto-chart/crypto-chart.component';
 
 @Component({
   selector: 'app-token-details',
@@ -21,7 +22,8 @@ import {MatList, MatListModule} from '@angular/material/list';
     MatCardModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    CryptoChartComponent
   ],
   templateUrl: './token-details.component.html',
   styleUrl: './token-details.component.scss',
