@@ -1,15 +1,25 @@
 <div>
+    @if(token$ | async; as token) {
     <mat-card>
-        @if(token$ | async; as token) {
             <mat-card-title>
                 <div class="token-title">
-                    <img src={{token.image.thumb}}>
+                    <img src={{token.image.small}}>
                     <div class="token-title-name">{{token.name}}</div>
                 </div>
             </mat-card-title>
             <mat-card-content class="card-content">
                 <div class="token-data-container">
                     <mat-list>
+                        <mat-list-item class="detail-list">
+                            <div class="data">
+                                <p class="alignleft">Current Price</p>
+                                <p class="alignright">
+                                  {{ token.market_data.current_price.usd }}$
+                                </p>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+
                         <mat-list-item class="detail-list">
                             <div class="data">
                                 <p class="alignleft">Change 24h:</p>
@@ -24,7 +34,7 @@
                         </mat-list-item>
                         <mat-divider></mat-divider>
 
-                        <mat-list-item>
+                        <mat-list-item class="detail-list">
                             <div class="data">
                                 <p class="alignleft">Change 7d:</p>
                                 <p class="alignright" [ngClass]="{
@@ -38,7 +48,7 @@
                         </mat-list-item>
                         <mat-divider></mat-divider>
 
-                        <mat-list-item>
+                        <mat-list-item class="detail-list">
                             <div class="data">
                                 <p class="alignleft">Change 30d:</p>
                                 <p class="alignright" [ngClass]="{
@@ -52,7 +62,7 @@
                         </mat-list-item>
                         <mat-divider></mat-divider>
 
-                        <mat-list-item>
+                        <mat-list-item class="detail-list">
                             <div class="data">
                                 <p class="alignleft">Change 1 year:</p>
                                 <p class="alignright" [ngClass]="{
@@ -64,6 +74,27 @@
                                 </p>
                             </div>
                         </mat-list-item>
+                        <mat-divider></mat-divider>
+
+                        <mat-list-item class="detail-list">
+                            <div class="data">
+                                <p class="alignleft">Market cap rank</p>
+                                <p class="alignright">
+                                  {{ token.market_cap_rank }}
+                                </p>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        
+                        <mat-list-item class="detail-list">
+                            <div class="data">
+                                <p class="alignleft">ATH</p>
+                                <p class="alignright">
+                                  {{ token.market_data.ath.usd }}$
+                                </p>
+                            </div>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
                       </mat-list>
                 </div>
 
@@ -71,8 +102,26 @@
                     <app-crypto-chart [chartTokenName] = tokenName></app-crypto-chart>
                 </div>
             </mat-card-content>
-        } @else {
-            <mat-spinner></mat-spinner>
-        }
-    </mat-card>    
+    </mat-card>
+    
+    <br>
+
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar>
+                <img src="{{token.image.small}}">
+            </div>
+            <mat-card-title>About {{token.name}}</mat-card-title>
+            <mat-card-subtitle>Description</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="description-container">
+            <div [innerHTML]="token.description.en"></div>
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-button [href]="token.links.homepage[0]" target="_blank">Source</a>
+        </mat-card-actions>
+    </mat-card>
+    } @else {
+        <mat-spinner></mat-spinner>
+    }
 </div>

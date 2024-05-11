@@ -3,12 +3,19 @@ import { CryptoApiService } from '../../api/crypto-api.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { PriceData } from '../../models/Interfaces/PriceData';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
+import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+
 @Component({
   selector: 'app-crypto-chart',
   standalone: true,
   imports: [
     CommonModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatRadioModule,
+    MatRadioGroup,
+    MatButtonModule,
+    MatButton
   ],
   templateUrl: './crypto-chart.component.html',
   styleUrl: './crypto-chart.component.scss',
@@ -16,7 +23,8 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
 })
 export class CryptoChartComponent {
   @Input() chartTokenName: string | null = 'bitcoin';
-
+  favoriteSeason: string = '';
+  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   chartDurationPeriod: number = 7;
   chartData: any = [
     {
@@ -29,13 +37,13 @@ export class CryptoChartComponent {
   legend: boolean = true;
   showLabels: boolean = true;
   animations: boolean = true;
-  xAxis: boolean = true;
+  xAxis: boolean = false;
   yAxis: boolean = true;
   showGridLanes: boolean = false;
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
   xAxisLabel: string = 'Time';
-  yAxisLabel: string = 'Price';
+  yAxisLabel: string = 'Price $';
   timeline: boolean = true;
   yScaleMin: number = 0;
 
@@ -56,18 +64,40 @@ export class CryptoChartComponent {
     this.cryptoService.getTokenChartData$(this.chartTokenName, this.chartDurationPeriod).subscribe(
       response => {
         var min = response.prices[0][1];
+        
         response.prices.map((p) => {
           if(p[1] < min){
             min = p[1];
           }
           var time = new DatePipe(this.locale);
+          let formattedPrice = Number(p[1]).toFixed(2); // Zapewnia formatowanie do dwóch miejsc dziesiętnych
           this.chartData[0].name = this.chartTokenName;
-          this.chartData[0].series.push({name: time.transform(new Date(p[0]), 'medium'), value: p[1].toString()});
+          this.chartData[0].series.push({
+            name: time.transform(new Date(p[0]), 'medium'), // formatuje datę do czytelniejszej formy
+            value: formattedPrice  // używa sformatowanej wartości ceny
+          });
         });
         this.chartData = [...this.chartData];
-        this.yScaleMin = min;
+        this.yScaleMin = Math.floor(min); // Zaokrąglenie min do najbliższej mniejszej liczby całkowitej
       }
     );
+
+    // this.cryptoService.getTokenChartData$(this.chartTokenName, this.chartDurationPeriod).subscribe(
+    //   response => {
+    //     var min = response.prices[0][1];
+        
+    //     response.prices.map((p) => {
+    //       if(p[1] < min){
+    //         min = p[1];
+    //       }
+    //       var time = new DatePipe(this.locale);
+    //       this.chartData[0].name = this.chartTokenName;
+    //       this.chartData[0].series.push({name: time.transform(new Date(p[0]), 'medium'), value: p[1].toString()});
+    //     });
+    //     this.chartData = [...this.chartData];
+    //     this.yScaleMin = min;
+    //   }
+    // );
   }
 
   onSelect(data: PriceData): void {

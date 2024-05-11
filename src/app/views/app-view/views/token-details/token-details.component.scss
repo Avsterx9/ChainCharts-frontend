@@ -51,3 +51,10 @@ mat-list{
 .text-red { color: red; font-weight: 500; }
 .text-green { color: green; font-weight: 500;}
 .text-white { color: white; font-weight: 500;}
+
+.description-container div{
+  padding: 2em;
+  font-size: 1rem;
+  text-align: justify;
+  line-height: 30px;
+}

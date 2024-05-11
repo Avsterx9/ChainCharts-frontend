@@ -11,9 +11,7 @@ import { PriceData } from '../models/Interfaces/PriceData';
 })
 export class CryptoApiService {
   private cryptoApiURL: string = 'http://localhost:5002/api/crypto/';
-  private coinGekoTokenURL: string = 'https://api.coingecko.com/api/v3/';
   // private cryptoCompareNewsURL: string = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN';
-  private coinGekoChartURL: string = '/market_chart?vs_currency=usd&days=';
 
   constructor(private http: HttpClient) {}
 
@@ -28,12 +26,8 @@ export class CryptoApiService {
   }
 
   public getGlobalData$(): Observable<CryptoGlobalData>{
-    return this.http.get<CryptoGlobalData>(this.coinGekoTokenURL + 'global');
+    return this.http.get<CryptoGlobalData>(this.cryptoApiURL + 'GetGlobalData');
   }
-
-  // public getLatestNews(){
-  //   return this.http.get<any>(this.cryptoCompareNewsURL);
-  // }
 
   public getTokenChartData$(tokenName: string, timePeriod: number) : Observable<PriceData>{
     let params = new HttpParams()
