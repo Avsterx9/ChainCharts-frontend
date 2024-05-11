@@ -105,6 +105,7 @@
     </mat-card>
     
     <br>
+    <br>
 
     <mat-card>
         <mat-card-header>
@@ -121,6 +122,63 @@
             <a mat-button [href]="token.links.homepage[0]" target="_blank">Source</a>
         </mat-card-actions>
     </mat-card>
+
+    <br>
+    <br>
+
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar>
+                <img src="assets/dev.png">
+            </div>
+            <mat-card-title>Developer Data</mat-card-title>
+            <mat-card-subtitle>Details about token development</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-list>
+                <mat-list-item class="detail-list">
+                    <div class="data">
+                        <p class="alignleft">Stars</p>
+                        <p class="alignright">{{ token.developer_data.stars }}</p>
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item class="detail-list">
+                    <div class="data">
+                        <p class="alignleft">Commit count (4 weeks)</p>
+                        <p class="alignright">{{ token.developer_data.commit_count_4_weeks }}</p>
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item class="detail-list">
+                    <div class="data">
+                        <p class="alignleft">Subscribers</p>
+                        <p class="alignright">{{ token.developer_data.subscribers }}</p>
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item class="detail-list">
+                    <div class="data">
+                        <p class="alignleft">Forks</p>
+                        <p class="alignright">{{ token.developer_data.forks }}</p>
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <mat-list-item class="detail-list">
+                    <div class="data">
+                        <p class="alignleft">Closed issues</p>
+                        <p class="alignright">{{ token.developer_data.closed_issues}}</p>
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+
     } @else {
         <mat-spinner></mat-spinner>
     }

@@ -81,23 +81,6 @@ export class CryptoChartComponent {
         this.yScaleMin = Math.floor(min); // Zaokrąglenie min do najbliższej mniejszej liczby całkowitej
       }
     );
-
-    // this.cryptoService.getTokenChartData$(this.chartTokenName, this.chartDurationPeriod).subscribe(
-    //   response => {
-    //     var min = response.prices[0][1];
-        
-    //     response.prices.map((p) => {
-    //       if(p[1] < min){
-    //         min = p[1];
-    //       }
-    //       var time = new DatePipe(this.locale);
-    //       this.chartData[0].name = this.chartTokenName;
-    //       this.chartData[0].series.push({name: time.transform(new Date(p[0]), 'medium'), value: p[1].toString()});
-    //     });
-    //     this.chartData = [...this.chartData];
-    //     this.yScaleMin = min;
-    //   }
-    // );
   }
 
   onSelect(data: PriceData): void {
