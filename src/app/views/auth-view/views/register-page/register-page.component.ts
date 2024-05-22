@@ -6,13 +6,24 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RegisterModel } from '../../../../models/Interfaces/RegisterModel';
+import { UsersApiService } from '../../../../api/users-api.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
   standalone: true,
-  imports: [CommonModule, MatDatepickerModule, MatNativeDateModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule]
+  imports: [
+    CommonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    RouterModule]
 })
 export class RegisterPageComponent {
   registerForm: FormGroup = new FormGroup({
@@ -26,7 +37,9 @@ export class RegisterPageComponent {
 
   submitted: boolean = false;
   constructor(
-    private formBuiler: FormBuilder
+    private usersService: UsersApiService,
+    private formBuiler: FormBuilder,
+    private router: Router
     ){
     this.buildForm();
   }
@@ -56,8 +69,26 @@ export class RegisterPageComponent {
     var email = this.registerForm.get('email')?.value;
     var password = this.registerForm.get('password')?.value;
     var date = this.registerForm.get('dateOfBirth')?.value;
+    var firstName = this.registerForm.get('firstName')?.value
+    var lastName = this.registerForm.get('firstName')?.value
 
-    console.log(date);
+    const createUserModel: RegisterModel = {
+      email: email,
+      password: password,
+      dateOfBirth: date,
+      firstName: firstName,
+      lastName: lastName,
+      roleId: 1
+    };
+
+    this.usersService.register$(createUserModel).subscribe({
+      next: (res) => {
+        this.router.navigate(['/auth']);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 
   onReset(): void {

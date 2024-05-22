@@ -8,7 +8,6 @@ import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../services/auth.service';
 import { ILoginModel } from '../../../../models/Interfaces/ILoginModel';
-import { LocalStorageService } from '../../../../services/local-storage.service';
 
 @Component({
   selector: 'app-login-page',
