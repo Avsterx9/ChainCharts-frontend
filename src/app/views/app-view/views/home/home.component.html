@@ -34,35 +34,35 @@
     <!-- Price Column -->
     <ng-container matColumnDef="Price">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-      <td mat-cell *matCellDef="let element"> {{element.current_price}}$ </td>
+      <td mat-cell *matCellDef="let element"> {{element.currentPrice}}$ </td>
     </ng-container>
 
     <!-- 24h Change Column -->
     <ng-container matColumnDef="Last 24h">
       <th mat-header-cell *matHeaderCellDef> Last 24h </th>
       <td mat-cell *matCellDef="let element">
-        <span *ngIf="element.market_cap_change_percentage_24h < 0" [ngStyle]="{color:'red'}">{{element.market_cap_change_percentage_24h.toFixed(2)}}% </span>
-        <span *ngIf="element.market_cap_change_percentage_24h > 0" [ngStyle]="{color:'green'}">{{element.market_cap_change_percentage_24h.toFixed(2)}}% </span>
-        <span *ngIf="element.market_cap_change_percentage_24h == 0" [ngStyle]="{color:'white'}">{{element.market_cap_change_percentage_24h.toFixed(2)}}% </span>
+        <span *ngIf="element.marketCapChangePercentage24h < 0" [ngStyle]="{color:'red'}">{{element.marketCapChangePercentage24h.toFixed(2)}}% </span>
+        <span *ngIf="element.marketCapChangePercentage24h > 0" [ngStyle]="{color:'green'}">{{element.marketCapChangePercentage24h.toFixed(2)}}% </span>
+        <span *ngIf="element.marketCapChangePercentage24h == 0" [ngStyle]="{color:'white'}">{{element.marketCapChangePercentage24h.toFixed(2)}}% </span>
       </td>
     </ng-container>
 
     <!-- 24h high Change Column -->
     <ng-container matColumnDef="High 24h">
         <th mat-header-cell *matHeaderCellDef> High 24h </th>
-        <td mat-cell *matCellDef="let element"> {{ element.high_24h }}$</td>
+        <td mat-cell *matCellDef="let element"> {{ element.high24h }}$</td>
     </ng-container>
 
     <!-- 24h low Change Column -->
     <ng-container matColumnDef="Low 24h">
         <th mat-header-cell *matHeaderCellDef> Low 24h </th>
-        <td mat-cell *matCellDef="let element"> {{ element.low_24h }}$</td>
+        <td mat-cell *matCellDef="let element"> {{ element.low24h }}$</td>
     </ng-container>
 
     <!-- Total volume -->
     <ng-container matColumnDef="Total volume">
         <th mat-header-cell *matHeaderCellDef> Total volume </th>
-        <td mat-cell *matCellDef="let element"> {{ element.total_volume }}$</td>
+        <td mat-cell *matCellDef="let element"> {{ element.totalVolume }}$</td>
     </ng-container>
 
     <ng-container matColumnDef="Details">

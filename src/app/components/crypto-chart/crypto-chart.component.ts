@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, LOCALE_ID } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, LOCALE_ID, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CryptoApiService } from '../../api/crypto-api.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { PriceData } from '../../models/Interfaces/PriceData';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
-import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
+import { MatRadioGroup, MatRadioModule } from '@angular/material/radio';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-crypto-chart',
@@ -21,10 +22,8 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
   styleUrl: './crypto-chart.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CryptoChartComponent {
+export class CryptoChartComponent implements OnChanges, OnInit {
   @Input() chartTokenName: string | null = 'bitcoin';
-  favoriteSeason: string = '';
-  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
   chartDurationPeriod: number = 7;
   chartData: any = [
     {
@@ -46,22 +45,34 @@ export class CryptoChartComponent {
   yAxisLabel: string = 'Price $';
   timeline: boolean = true;
   yScaleMin: number = 0;
+  
+  private dataSubscription: Subscription = new Subscription();
 
   constructor(
-    private cryptoService: CryptoApiService,
-    @Inject(LOCALE_ID) public locale: string){
+    private cryptoService: CryptoApiService, @Inject(LOCALE_ID) public locale: string){
       this.getChartData();
   }
+  ngOnInit(): void {
+    console.log(this.chartTokenName)
+  }
 
-  private getChartData(){
-    if(this.chartData[0].series.length != 0){
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['chartTokenName'] && changes['chartTokenName'].currentValue) {
+      this.getChartData();
+    }
+  }
+
+  private getChartData() {
+    if (this.chartData[0].series.length !== 0) {
       this.chartData[0].series = [];
     }
 
-    if(this.chartTokenName == null)
+    if (this.chartTokenName === null) {
       return;
+    }
 
-    this.cryptoService.getTokenChartData$(this.chartTokenName, this.chartDurationPeriod).subscribe(
+    this.dataSubscription.unsubscribe();
+    this.dataSubscription = this.cryptoService.getTokenChartData$(this.chartTokenName, this.chartDurationPeriod).subscribe(
       response => {
         var min = response.prices[0][1];
         
@@ -93,5 +104,9 @@ export class CryptoChartComponent {
 
   onDeactivate(data: PriceData): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+  ngOnDestroy() {
+    this.dataSubscription.unsubscribe();
   }
 }
