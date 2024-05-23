@@ -14,6 +14,10 @@ export default [
           path: 'token-details/:tokenName',
           loadComponent: () => import('./views/token-details/token-details.component').then((c) => c.TokenDetailsComponent),
         },
+        {
+          path: 'news',
+          loadComponent: () => import('./views/news/news.component').then((c) => c.NewsComponent),
+        },
       ],
     },
     { path: '**', redirectTo: '' },

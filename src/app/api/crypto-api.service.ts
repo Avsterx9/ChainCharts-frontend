@@ -11,7 +11,7 @@ import { PriceData } from '../models/Interfaces/PriceData';
 })
 export class CryptoApiService {
   private cryptoApiURL: string = 'http://localhost:5002/api/crypto/';
-  // private cryptoCompareNewsURL: string = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN';
+  private cryptoCompareNewsURL: string = 'https://min-api.cryptocompare.com/data/v2/news/?lang=EN';
 
   constructor(private http: HttpClient) {}
 
@@ -35,5 +35,9 @@ export class CryptoApiService {
       .set('Days', timePeriod);
 
     return this.http.get<any>(this.cryptoApiURL + 'GetPriceData', { params });
+  }
+
+  public getLatestNews$() : Observable<any>{
+    return this.http.get<any>(this.cryptoCompareNewsURL);
   }
 }
