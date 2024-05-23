@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CryptoApiService } from '../../../../api/crypto-api.service';
 import { CryptoTokenDescription } from '../../../../models/Interfaces/CryptoTokenDescription';
@@ -11,7 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatList, MatListModule} from '@angular/material/list';
 import { CryptoChartComponent } from '../../../../components/crypto-chart/crypto-chart.component';
 import { switchMap, filter, map, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-token-details',
@@ -30,21 +30,29 @@ import { Observable } from 'rxjs';
   styleUrl: './token-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TokenDetailsComponent {
-  protected readonly token$: Observable<CryptoTokenDescription>;
-  tokenName: string | null = '';
+export class TokenDetailsComponent implements OnInit, OnDestroy {
+
+  private tokenNameSubject = new BehaviorSubject<string>('bitcoin');
+  tokenName$ = this.tokenNameSubject.asObservable();
+  token$: Observable<CryptoTokenDescription> = this.tokenName$.pipe(
+    switchMap(tokenName => this.cryptoService.getCTokenDesc$(tokenName))
+  );
+  private routeSub: Subscription | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private cryptoService: CryptoApiService
-  ) {
-    this.getTokenNameFromParams();
-    this.token$ = this.cryptoService.getCTokenDesc$(this.tokenName == null ? 'bitcoin' : this.tokenName);
+  ) {}
+
+  ngOnInit() {
+    this.routeSub = this.route.paramMap.pipe(
+      map(params => params.get('tokenName')),
+      filter(tokenName => tokenName !== null),
+      tap(tokenName => this.tokenNameSubject.next(tokenName!))
+    ).subscribe();
   }
 
-  private getTokenNameFromParams(): void {
-    this.route.paramMap.subscribe(params => {
-      this.tokenName = params.get('tokenName');
-    });
+  ngOnDestroy() {
+    this.routeSub?.unsubscribe();
   }
 }

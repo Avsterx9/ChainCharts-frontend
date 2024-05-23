@@ -9,6 +9,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Observable, startWith, map } from 'rxjs';
 import { CryptoApiService } from '../../api/crypto-api.service';
 import { CryptoToken } from '../../models/Interfaces/CryptoToken';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -32,7 +33,7 @@ export class SearchBarComponent {
   options: CryptoToken[] = [];
   filteredOptions: Observable<CryptoToken[]>;
 
-  constructor(private cryptoApiService: CryptoApiService){
+  constructor(private cryptoApiService: CryptoApiService, private router: Router){
     this.getTokens();
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -56,5 +57,13 @@ export class SearchBarComponent {
         console.log(error);
       }
     })
+  }
+
+  onSelectionChange(event: any) {
+    const selectedToken = event.option.value;
+    const tokenId = this.options.find(option => option.name === selectedToken)?.id;
+    if (selectedToken) {
+      this.router.navigate(['/app/token-details', tokenId]);
+    }
   }
 }
