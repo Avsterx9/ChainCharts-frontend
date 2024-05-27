@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CryptoGlobalData } from '../models/Interfaces/CryptoGlobalData';
 import { CryptoTokenDescription } from '../models/Interfaces/CryptoTokenDescription';
 import { PriceData } from '../models/Interfaces/PriceData';
+import { CryptoNews } from '../models/Interfaces/CryptoNews';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class CryptoApiService {
     return this.http.get<any>(this.cryptoApiURL + 'GetPriceData', { params });
   }
 
-  public getLatestNews$() : Observable<any>{
+  public getLatestNews$() : Observable<CryptoNews>{
     return this.http.get<any>(this.cryptoCompareNewsURL);
   }
 }

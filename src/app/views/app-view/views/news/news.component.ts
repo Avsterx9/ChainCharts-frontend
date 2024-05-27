@@ -5,8 +5,9 @@ import { CryptoApiService } from '../../../../api/crypto-api.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
-import { map } from 'rxjs';
+import { distinct, map, mergeMap, toArray } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
+import { CryptoNews, CryptoNewsData } from '../../../../models/Interfaces/CryptoNews';
 
 @Component({
   selector: 'app-news',
@@ -23,11 +24,19 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsComponent {
-  public news$: Observable<any[]> = new Observable<any[]>();
+  public news$: Observable<CryptoNewsData[]> = new Observable<CryptoNewsData[]>();
 
-  constructor(private cryptoService: CryptoApiService) { 
+  constructor(private cryptoService: CryptoApiService) {
     this.news$ = this.cryptoService.getLatestNews$().pipe(
-      map(response => response.Data)
+      map((response: CryptoNews) => response.Data),
+      mergeMap((news: CryptoNewsData[]) => news),
+      distinct((newsItem: CryptoNewsData) => newsItem.title),
+      toArray()
     );
+  }
+
+  convertUnixTimestamp(timestamp: number): string {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleDateString();
   }
 }

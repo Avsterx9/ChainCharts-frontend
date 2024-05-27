@@ -5,45 +5,46 @@
   
     @if(news$ | async; as news) {
         <div class="x" *ngFor="let article of news">
-  
             <mat-card class="example-card">
-              <mat-card-header>
-                  <div mat-card-avatar class="example-header-image">
-                      <img src="{{article.imageurl}}" width="30em">
-                  </div>
-                  <mat-card-title style="padding-top: 0.25em">{{article.title}}</mat-card-title>
-              </mat-card-header>
-              <mat-divider></mat-divider>
-              <br>
-              <mat-card-content>
-                  <div class="news-data-holder">
-                      <div class="news-image">
-                          <img src="{{article.imageurl}}" style="width: 100%">
-                      </div>
-        
-                  <div class="news-desc">
-                      <p>
-                          {{article.body}}
-                      </p>
-                      <br>
-                      <h5>~ {{article.source_info.name}}</h5>
-                  </div>
-                  </div>
-              </mat-card-content>
-              <mat-card-actions>
-                <mat-divider></mat-divider>
-                <br>
-                <a href="{{article.url}}">
-                  <button mat-raised-button color="primary">Source</button>
-                </a>
-              </mat-card-actions>
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image">
+                        <img src="{{article.imageurl}}" width="40px">
+                    </div>
+                    <mat-card-title style="padding-top: 0.25em">{{article.title}}</mat-card-title>
+                    <mat-card-subtitle>{{ convertUnixTimestamp(article.published_on) }}</mat-card-subtitle> <!-- Wyświetlanie daty -->
+                </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <br>
+                <mat-card-content>
+                    <div class="news-data-holder">
+                        <div class="news-image">
+                            <img src="{{article.imageurl}}">
+                        </div>
+            
+                        <div class="news-desc">
+                            <div class="article-body">
+                                <p>{{article.body}}</p>
+                            </div>
+                            <div class="article-tags">
+                                <p>{{article.tags}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <div class="bottom-actions">
+                        <a href="{{article.url}}">
+                            <button mat-stroked-button color="primary">Source</button>
+                        </a>
+                        <div class="categories">
+                            <p>{{article.source_info.name}}</p>
+                            <p>{{article.categories}}</p>
+                        </div>
+                    </div>
+                </mat-card-actions>
             </mat-card>
             <br>
           </div>
-        
-          <mat-divider></mat-divider>
-          <br>
-
     }
     @else {
         <mat-spinner></mat-spinner>
