@@ -40,7 +40,10 @@ import { MatInputModule } from '@angular/material/input';
 export class WalletComponent {
   myControl = new FormControl('');
   filteredOptions: Observable<CryptoToken[]>;
-  walletEstimation?: WalletEstimationValue;
+  walletEstimation: WalletEstimationValue = {
+    totalEstimation: 0,
+    tokenValues: []
+  };
   chartValues: TokenValue[] = [];
   options: CryptoToken[] = [];
   cryptoData: UserToken[] = [];
