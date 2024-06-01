@@ -1,0 +1,38 @@
+<mat-card class="container">
+    @if(userData$ | async; as userData) {
+    <mat-card-header >
+      <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>Hello {{userData.firstName}} {{userData.lastName}}!</mat-card-title>
+		    <mat-divider></mat-divider>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+
+        <div class="data-container">
+            Welcome to ChainCharts! New, simple and modern platform that allows you to track all your crypto tokens!
+        </div>
+
+        <div class="data-container2">
+            Data provided by CoinGecko, components provided by Material
+        </div>
+
+        <div class="button-container">
+            <a href="https://www.coingecko.com/pl/api" class="styled-link">
+                <button mat-stroked-button color="primary" class="href-btn">
+                    Visit CoinGecko!
+                    <mat-icon>explore</mat-icon>
+                </button>
+            </a>
+
+            <a href="https://material.angular.io/" class="styled-link">
+                <button mat-stroked-button color="primary" class="href-btn">
+                    Visit Angular Material!
+                    <mat-icon>extension</mat-icon>
+                </button>
+            </a>
+        </div>
+
+      </mat-card-content>
+    } @else {
+        <mat-spinner></mat-spinner>
+    }
+</mat-card>

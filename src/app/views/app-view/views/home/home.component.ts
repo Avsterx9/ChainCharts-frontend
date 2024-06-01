@@ -12,6 +12,7 @@ import { CryptoToken } from '../../../../models/Interfaces/CryptoToken';
 import { SearchBarComponent } from "../../../../components/search-bar/search-bar.component";
 import { GlobalCryptoDataComponent } from "../../../../components/global-crypto-data/global-crypto-data.component";
 import { Router } from '@angular/router';
+import { AppInfoComponent } from '../../../../components/app-info/app-info.component';
 
 @Component({
     selector: 'app-home',
@@ -28,7 +29,8 @@ import { Router } from '@angular/router';
         MatCardModule,
         MatTableModule,
         SearchBarComponent,
-        GlobalCryptoDataComponent
+        GlobalCryptoDataComponent,
+        AppInfoComponent
     ]
 })
 export class HomeComponent {
