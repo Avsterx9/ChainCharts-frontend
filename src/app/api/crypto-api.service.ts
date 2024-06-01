@@ -77,4 +77,8 @@ export class CryptoApiService {
   public getLatestNews$() : Observable<CryptoNews>{
     return this.http.get<any>(this.cryptoCompareNewsURL);
   }
+
+  public getWalletEstimationValue$() : Observable<CryptoNews>{
+    return this.http.get<any>(this.cryptoApiURL + 'Wallet');
+  }
 }
