@@ -18,6 +18,10 @@ export default [
           path: 'news',
           loadComponent: () => import('./views/news/news.component').then((c) => c.NewsComponent),
         },
+        {
+          path: 'favourites',
+          loadComponent: () => import('./views/favourite-tokens/favourite-tokens.component').then((c) => c.FavouriteTokensComponent),
+        },
       ],
     },
     { path: '**', redirectTo: '' },

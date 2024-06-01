@@ -13,13 +13,6 @@ import { SearchBarComponent } from "../../../../components/search-bar/search-bar
 import { GlobalCryptoDataComponent } from "../../../../components/global-crypto-data/global-crypto-data.component";
 import { Router } from '@angular/router';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 @Component({
     selector: 'app-home',
     standalone: true,
@@ -41,7 +34,7 @@ export interface PeriodicElement {
 export class HomeComponent {
   cryptoData: CryptoToken[] = [];
   dataSource = new MatTableDataSource(this.cryptoData);
-  displayedColumns: string[] = ['Logo', 'Name', 'Price', 'Last 24h', 'High 24h', 'Low 24h', 'Total volume', 'Details'];
+  displayedColumns: string[] = ['Logo', 'Name', 'Price', 'Last 24h', 'High 24h', 'Low 24h', 'Total volume', 'Details', 'Actions'];
   tokenSearchName = '';
 
   displayTokenDataComponent = true;
@@ -64,5 +57,17 @@ export class HomeComponent {
 
   public navigateToTokenDetails(tokenName: string) {
     this.router.navigate(['/app/token-details', tokenName]);
+  }
+
+  public setAsFavourite(tokenId:string){
+    console.log("test")
+    this.cryptoApiService.addFavouriteToken$(tokenId).subscribe({
+      next: (res) => {
+        this.getTokens()
+      },
+      error: (error) => {
+        console.log(error);
+      }
+  })
   }
 }

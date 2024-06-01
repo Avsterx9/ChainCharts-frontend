@@ -74,6 +74,20 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Details </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-flat-button color="basic" (click)="setAsFavourite(element.id)">
+          @if(element.isFavourite){
+            <mat-icon>bookmark</mat-icon>
+          }
+          @else{
+            <mat-icon>bookmark_border</mat-icon>
+          }
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 

@@ -5,6 +5,7 @@
   color: black;
   padding: 10px 20px;
   border-bottom: 1px solid #e2e2e2;
+  background-color: rgb(61, 34, 179);
 }
 
 .navbar-left{
@@ -16,14 +17,21 @@
   margin-left: 1em;
 }
 
-.navbar-left span{
-  font-size: 1em;
-}
+.navbar-left{
+  mat-icon{
+    color: white;
+  }
 
-.navbar-right button {
+  span{
+    font-size: 1em;
+    font-weight: 500;
+    color: white;
+  }
+} 
+
+.navbar-right {
   padding: 8px 16px;
-  background-color: #f44336;
-  color: white;
+  color: red;
   border: none;
   cursor: pointer;
   border-radius: 4px;

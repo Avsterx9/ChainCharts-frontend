@@ -1,7 +1,7 @@
 <header>
     <div class="navbar">
         <div class="navbar-left">
-          <mat-icon color="primary">account_circle</mat-icon>
+          <mat-icon>account_circle</mat-icon>
 
           <div class="user-info">
             @if(userData$ | async; as userData) {
@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="navbar-right">
-          <button (click)="logout()">Logout</button>
+          <mat-icon fontIcon="power_settings_new" (click)="logout()"></mat-icon>
         </div>
       </div>
 </header>

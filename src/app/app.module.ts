@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TokenApiInterceptor } from './interceptors/token-api.interceptor';
 import { AppInitService } from './services/app-init.service';
+import { TruncatePipe } from './pipes/TrucatePipe';
 
 export function appInit(appInitService: AppInitService) {
   return () => appInitService.init();

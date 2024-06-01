@@ -6,6 +6,8 @@ import { CryptoGlobalData } from '../models/Interfaces/CryptoGlobalData';
 import { CryptoTokenDescription } from '../models/Interfaces/CryptoTokenDescription';
 import { PriceData } from '../models/Interfaces/PriceData';
 import { CryptoNews } from '../models/Interfaces/CryptoNews';
+import { FavouriteToken } from '../models/Interfaces/FavouriteToken';
+import { RequestResponse } from '../models/Interfaces/RequestResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,17 @@ export class CryptoApiService {
 
   public getCTokens$(): Observable<CryptoToken[]>{
     return this.http.get<CryptoToken[]>(this.cryptoApiURL + 'GetTokens');
+  }
+
+  public getFavouriteTokens$(): Observable<FavouriteToken[]>{
+    return this.http.get<FavouriteToken[]>(this.cryptoApiURL + 'GetFavouriteTokens');
+  }
+
+  public addFavouriteToken$(tokenId: string): Observable<RequestResponse>{
+    let params = new HttpParams()
+      .set('TokenId', tokenId);
+
+    return this.http.post<RequestResponse>(this.cryptoApiURL + 'AddFavourite', null, {params});
   }
 
   public getGlobalData$(): Observable<CryptoGlobalData>{

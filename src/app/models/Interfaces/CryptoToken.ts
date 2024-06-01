@@ -25,4 +25,5 @@ export interface CryptoToken{
     atlDate: Date;
     roi?: any;
     lastUpdated: Date;
+    isFavourite: boolean;
 }
