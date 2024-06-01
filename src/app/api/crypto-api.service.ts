@@ -39,6 +39,13 @@ export class CryptoApiService {
     return this.http.post<RequestResponse>(this.cryptoApiURL + 'AddFavourite', null, {params});
   }
 
+  public deleteFavouriteToken$(tokenId: string): Observable<RequestResponse>{
+    let params = new HttpParams()
+      .set('TokenId', tokenId);
+
+    return this.http.delete<RequestResponse>(this.cryptoApiURL + 'DeleteFavouriteToken', {params});
+  }
+
   public getGlobalData$(): Observable<CryptoGlobalData>{
     return this.http.get<CryptoGlobalData>(this.cryptoApiURL + 'GetGlobalData');
   }

@@ -59,15 +59,26 @@ export class HomeComponent {
     this.router.navigate(['/app/token-details', tokenName]);
   }
 
-  public setAsFavourite(tokenId:string){
-    console.log("test")
-    this.cryptoApiService.addFavouriteToken$(tokenId).subscribe({
+  public setAsFavourite(tokenId:string, isFavourite: boolean){
+    if(!isFavourite){
+      this.cryptoApiService.addFavouriteToken$(tokenId).subscribe({
+        next: (res) => {
+          this.getTokens()
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+      return;
+    }
+
+    this.cryptoApiService.deleteFavouriteToken$(tokenId).subscribe({
       next: (res) => {
         this.getTokens()
       },
       error: (error) => {
         console.log(error);
       }
-  })
+    });
   }
 }

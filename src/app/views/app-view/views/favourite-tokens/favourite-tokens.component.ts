@@ -46,4 +46,15 @@ export class FavouriteTokensComponent {
   public navigateToTokenDetails(tokenName: string) {
     this.router.navigate(['/app/token-details', tokenName]);
   }
+
+  public deleteFavouriteToken(tokenId: string){
+    this.cryptoApiService.deleteFavouriteToken$(tokenId).subscribe({
+      next: (res) => {
+        this.getTokens()
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
 }
