@@ -9,6 +9,7 @@ import { CryptoNews } from '../models/Interfaces/CryptoNews';
 import { FavouriteToken } from '../models/Interfaces/FavouriteToken';
 import { RequestResponse } from '../models/Interfaces/RequestResponse';
 import { UserToken, UserTokenLite } from '../models/Interfaces/UserToken';
+import { WalletEstimationValue } from '../models/Interfaces/WalletEstimationValue';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,7 @@ export class CryptoApiService {
   }
 
   public addUserToken$(model: UserTokenLite): Observable<RequestResponse>{
-    return this.http.post<RequestResponse>(this.cryptoApiURL + 'AddFUserToken', model);
+    return this.http.post<RequestResponse>(this.cryptoApiURL + 'AddUserToken', model);
   }
 
   public deleteUserToken$(tokenId: string): Observable<RequestResponse>{
@@ -78,7 +79,7 @@ export class CryptoApiService {
     return this.http.get<any>(this.cryptoCompareNewsURL);
   }
 
-  public getWalletEstimationValue$() : Observable<CryptoNews>{
+  public getWalletEstimationValue$() : Observable<WalletEstimationValue>{
     return this.http.get<any>(this.cryptoApiURL + 'Wallet');
   }
 }

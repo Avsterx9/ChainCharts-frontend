@@ -10,31 +10,68 @@
                 Wallet value estimation
             </mat-card-header>
             <mat-card-content class="card-content">
-
-                <app-pie-chart></app-pie-chart>
-
+                <app-pie-chart [chartData]="chartValues"></app-pie-chart>
             </mat-card-content>
         </mat-card>
 
         <mat-card class="info-card">
             <mat-card-header class="card-header">
-                Here are your followed and favourite tokens
+                Value estimation
             </mat-card-header>
             <mat-card-content class="card-content">
-                This section is personalized just for you! Track your favourite tokens and stay up-to-date with the latest price changes and trends. Customize your experience by adding or removing tokens as you like.
+              Here you can find value estimation of your crypto wallet. Use table below to add your tokens to database!
 
-                <p>Welcome to your Favourite Tokens section! Here you can:
-                    <ul>
-                        <li>Monitor the price of your favourite cryptocurrencies.</li>
-                        <li>Quickly access detailed information about each token.</li>
-                        <li>Remove tokens from your favourites list by clicking the trash icon.</li>
-                    </ul>
-                    Start by adding tokens to your favourites from the main page or by searching for a token in the search bar above.
-                <p>
-
+              <div class="value-container">
+                {{walletEstimation?.totalEstimation}}$
+              </div>
             </mat-card-content>
         </mat-card>
     </div>
+    <br>
+
+      <mat-card>
+        <mat-card-header>
+          Add your coins to wallet
+        </mat-card-header>
+
+        <div class="form-card">
+          <form [formGroup]="form" (ngSubmit)="addUserToken()" >
+            <mat-form-field class="form-unit" appearance="outline">
+              <mat-label>Search</mat-label>
+              <input type="text"
+                      placeholder="Search"
+                      aria-label="Number"
+                      matInput
+                      [formControl]="myControl"
+                      [matAutocomplete]="auto">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectionChange($event)">
+              @for (option of filteredOptions | async; track option) {
+                  <mat-option [value]="option.name">
+                      <img src="{{option.image}}" width="20px">
+                      {{option.name}}
+                  </mat-option>
+              }
+              </mat-autocomplete>
+              <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field floatLabel="always" appearance="outline" class="form-unit">
+            <mat-label>Amount</mat-label>
+            <input 
+              matInput 
+              type="number" 
+              formControlName="quantity"
+              placeholder="0">
+          </mat-form-field>
+
+          <button mat-raised-button  type="submit" color="primary">
+            <mat-icon>add</mat-icon>
+            Dodaj
+          </button>
+        </form>
+        </div>
+    </mat-card>
+
     <br>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
@@ -72,12 +109,12 @@
     
         <ng-container matColumnDef="Quantity">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
-            <td mat-cell *matCellDef="let element"> {{element.Quantity}}$ </td>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}}$ </td>
         </ng-container>
 
         <ng-container matColumnDef="EstimatedValue">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> EstimatedValue </th>
-            <td mat-cell *matCellDef="let element"> {{element.Quantity}}$ </td>
+            <td mat-cell *matCellDef="let element"> {{element.valueEstimation}}$ </td>
         </ng-container>
 
         <ng-container matColumnDef="Actions">

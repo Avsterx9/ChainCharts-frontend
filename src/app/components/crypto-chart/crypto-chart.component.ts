@@ -49,7 +49,8 @@ export class CryptoChartComponent implements OnChanges, OnInit {
   private dataSubscription: Subscription = new Subscription();
 
   constructor(
-    private cryptoService: CryptoApiService, @Inject(LOCALE_ID) public locale: string){
+    private cryptoService: CryptoApiService,
+    @Inject(LOCALE_ID) public locale: string){
       this.getChartData();
   }
   ngOnInit(): void {

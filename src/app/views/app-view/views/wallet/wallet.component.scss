@@ -3,10 +3,14 @@
 }
 
 .header{
-  margin-top: 1em;
   font-size: 30px;
-  margin-bottom: 1em;
+  margin-top: 1em;
+  margin-BOTTOM: 1em;
+  color: rgb(118, 75, 238);
 
+  Mat-icon{
+    scale: 150%;
+  }
 }
 
 .info-container{
@@ -30,4 +34,26 @@
 
 .card-content{
   font-size: 15px;
+}
+
+.form-card{
+  padding: 1em;
+}
+
+.form-unit{
+  width: 40%;
+}
+
+mat-form-field {
+  margin-right: 2em;
+}
+.value-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  font-size: 3em;
+  font-weight: 500;
+  color: rgb(141, 70, 207);
+  background-color: rgb(246, 245, 248);
+  padding: 2em;
 }
