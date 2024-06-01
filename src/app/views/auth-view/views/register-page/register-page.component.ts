@@ -70,7 +70,7 @@ export class RegisterPageComponent {
     var password = this.registerForm.get('password')?.value;
     var date = this.registerForm.get('dateOfBirth')?.value;
     var firstName = this.registerForm.get('firstName')?.value
-    var lastName = this.registerForm.get('firstName')?.value
+    var lastName = this.registerForm.get('lastName')?.value
 
     const createUserModel: RegisterModel = {
       email: email,
