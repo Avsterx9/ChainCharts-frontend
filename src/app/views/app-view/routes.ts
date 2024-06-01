@@ -22,6 +22,10 @@ export default [
           path: 'favourites',
           loadComponent: () => import('./views/favourite-tokens/favourite-tokens.component').then((c) => c.FavouriteTokensComponent),
         },
+        {
+          path: 'wallet',
+          loadComponent: () => import('./views/wallet/wallet.component').then((c) => c.WalletComponent),
+        },
       ],
     },
     { path: '**', redirectTo: '' },

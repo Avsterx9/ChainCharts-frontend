@@ -1,0 +1,111 @@
+// :host ::ng-deep {
+//   .pie-chart-container {
+//     .advanced-pie-legend .total-value {
+//       font-size: 25px !important;
+//       margin-bottom: 0.1em;
+//     }
+    
+//     .advanced-pie-legend .total-label {
+//         font-size: 16px !important;
+//         margin-bottom: 5px !important;
+//         line-height: 1em !important;
+//     }
+
+//     .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-value {
+//         font-size: 20px !important;
+//         margin-left: 11px;
+//         line-height: 1em !important;
+//         margin-top: 0px !important;
+//     }
+    
+//     .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-label {
+//         font-size: 10px !important;
+//         opacity: 0.7;
+//         margin-left: 11px;
+//         margin-top: 0px !important;
+//         line-height: 1em !important;
+//     }
+    
+//     .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-percent {
+//         font-size: 14px !important;
+//         opacity: 0.7;
+//         margin-left: 11px;
+//         line-height: 1em !important;
+//     }
+//   }
+  
+// }
+
+:host ::ng-deep {
+  .pie-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .advanced-pie-legend {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .total-value {
+        font-size: 25px !important;
+        margin-bottom: 0.1em;
+      }
+      
+      .total-label {
+          font-size: 16px !important;
+          margin-bottom: 5px !important;
+          line-height: 1em !important;
+      }
+
+      .legend-items-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+
+        .legend-items {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+
+          .legend-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 5px;
+
+            .item-color {
+              margin-right: 5px;
+              border-left: 20px solid;
+            }
+
+            .item-value {
+                font-size: 20px !important;
+                margin-left: 0;
+                line-height: 1em !important;
+                margin-top: 0 !important;
+            }
+            
+            .item-label {
+                font-size: 10px !important;
+                opacity: 0.7;
+                margin-left: 0;
+                margin-top: 0 !important;
+                line-height: 1em !important;
+            }
+            
+            .item-percent {
+                font-size: 14px !important;
+                opacity: 0.7;
+                margin-left: 0;
+                line-height: 1em !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

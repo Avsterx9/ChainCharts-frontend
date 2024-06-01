@@ -8,6 +8,7 @@ import { PriceData } from '../models/Interfaces/PriceData';
 import { CryptoNews } from '../models/Interfaces/CryptoNews';
 import { FavouriteToken } from '../models/Interfaces/FavouriteToken';
 import { RequestResponse } from '../models/Interfaces/RequestResponse';
+import { UserToken, UserTokenLite } from '../models/Interfaces/UserToken';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class CryptoApiService {
     let params = new HttpParams()
       .set('TokenId', tokenId);
 
-    return this.http.post<RequestResponse>(this.cryptoApiURL + 'AddFavourite', null, {params});
+    return this.http.post<RequestResponse>(this.cryptoApiURL + 'AddFavouriteToken', null, {params});
   }
 
   public deleteFavouriteToken$(tokenId: string): Observable<RequestResponse>{
@@ -44,6 +45,21 @@ export class CryptoApiService {
       .set('TokenId', tokenId);
 
     return this.http.delete<RequestResponse>(this.cryptoApiURL + 'DeleteFavouriteToken', {params});
+  }
+
+  public getUserTokens$(): Observable<UserToken[]>{
+    return this.http.get<UserToken[]>(this.cryptoApiURL + 'GetUserTokens');
+  }
+
+  public addUserToken$(model: UserTokenLite): Observable<RequestResponse>{
+    return this.http.post<RequestResponse>(this.cryptoApiURL + 'AddFUserToken', model);
+  }
+
+  public deleteUserToken$(tokenId: string): Observable<RequestResponse>{
+    let params = new HttpParams()
+      .set('TokenId', tokenId);
+
+    return this.http.delete<RequestResponse>(this.cryptoApiURL + 'DeleteUserToken', {params});
   }
 
   public getGlobalData$(): Observable<CryptoGlobalData>{
